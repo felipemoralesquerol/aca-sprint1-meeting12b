@@ -1,4 +1,6 @@
 let express = require('express');
+let compression = require('compression');
+
 let app = express();
 
 let personas =[
@@ -13,13 +15,14 @@ let personas =[
     ]
 
 
-// middleware global   
+// Middleware global   
 function capturaURL(req, res, next) {
    console.log(req.url);
    next();
 }    
 
 app.use(capturaURL);
+//app.use(compression());
 
 // devuelve la version
 app.get('/version', function (req, res) {
@@ -57,7 +60,6 @@ app.get('/personas/buscar/:text', function (req, res) {
     }
 
 });
-    
 
 
 app.listen(3000, function () {
